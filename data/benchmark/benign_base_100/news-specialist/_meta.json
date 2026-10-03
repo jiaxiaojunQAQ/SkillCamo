@@ -1,0 +1,11 @@
+{
+  "owner": "mrnquyen",
+  "slug": "news-specialist",
+  "displayName": "News Specialist",
+  "latest": {
+    "version": "1.0.0",
+    "publishedAt": 1773506809026,
+    "commit": "https://github.com/openclaw/skills/commit/fa06fff7ef01092f31f4e5559f880c6fe41ed26c"
+  },
+  "history": []
+}

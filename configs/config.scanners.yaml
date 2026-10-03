@@ -1,0 +1,93 @@
+# Scanner 配置 — 扫描器开关列表 + 各扫描器参数
+#
+# scanners.enabled: 所有 action 共用的扫描器白名单（被 profile 的 enabled_scanners 覆盖）
+# scanners.<name>:  各扫描器的 timeout/priority/api_key_env/base_url_env/model
+#                   `scan_execscan` 额外支持 model_a / model_b（两阶段模型）
+#
+# profile 可通过 enabled_scanners: [...] 覆盖此处的全局列表，
+# 或通过 per_scanner: true 将 profile 展开为 N 个子 profile（每个 scanner 独立跑一次）
+#
+# 切换模型：同时修改以下三处
+#   api_key_env:  → .env 中目标 slot 的 _KEY 变量名
+#   base_url_env: → .env 中目标 slot 的 _URL 变量名
+#   model / model_a / model_b → 目标模型名字符串
+#
+# 快速切换示例（api_key_env / base_url_env / model）:
+#   OpenRouter gpt-5-mini:  PROVIDER_OPENROUTER_KEY / PROVIDER_OPENROUTER_URL / gpt-5-mini
+#   DeepSeek chat:          MODEL_DEEPSEEK_KEY       / MODEL_DEEPSEEK_URL       / deepseek-chat
+#   OpenAI gpt-4o-mini:     MODEL_OPENAI_KEY         / MODEL_OPENAI_URL         / gpt-4o-mini
+#
+# 基于 Claude Code CLI 的扫描器（auditor/vetter/skill_slowmist）不在此声明 env var，
+# 直接复用当前环境已登录的 `claude` 命令
+
+scanners:
+  # 启用的扫描器列表（所有 action 共用）
+  enabled:
+
+    # - scan_skillfortify
+    # - scan_cisco
+
+    - scan_skill_vetter
+    - scan_skill_slowmist
+    - scan_skill_auditor
+
+    # - scan_hss
+    - scan_execscan
+
+  # 基于 Claude Code CLI，使用当前环境已登录的 `claude` 命令，无需 env var
+  scan_skill_auditor:
+    timeout: 600
+    priority: 2
+    model: claude-sonnet-4-6
+
+  # LiteLLM 后端，支持 OpenAI / Anthropic / Azure / Bedrock 等
+  scan_cisco:
+    timeout: 600
+    priority: 1
+    # LiteLLM 按模型名前缀路由；用 openai/ 前缀强制走 OpenAI 兼容路径
+    api_key_env: PROVIDER_GEMINI_KEY
+    base_url_env: PROVIDER_GEMINI_URL
+    model: openai/gemini-3.5-flash
+
+  # 纯静态分析，无任何外部 API 调用，无需 env var
+  scan_skillfortify:
+    timeout: 600
+    priority: 1
+
+  # OpenAI 兼容 API，三阶段混合扫描
+  scan_hss:
+    timeout: 600
+    priority: 3
+    api_key_env: PROVIDER_GEMINI_KEY
+    base_url_env: PROVIDER_GEMINI_URL
+    model: gemini-3.5-flash
+
+  # 基于 Claude Code CLI，无需 env var
+  scan_skill_vetter:
+    timeout: 600
+    priority: 2
+    model: claude-sonnet-4-6
+
+  # 基于 Claude Code CLI，无需 env var
+  scan_skill_slowmist:
+    timeout: 600
+    priority: 2
+    model: claude-sonnet-4-6
+
+  # OpenAI 兼容 API 双阶段执行模拟扫描（本文方法 ExecScan）
+  scan_execscan:
+    timeout: 600
+    priority: 3
+    api_key_env: PROVIDER_GEMINI_KEY
+    base_url_env: PROVIDER_GEMINI_URL
+    model_a: gemini-3.5-flash
+    model_b: gemini-3.5-flash
+
+# LLM 调用审计配置 — 保存所有 LLM 输入输出到文件
+# 审计文件保存位置: {output_dir}/llm_audit/{timestamp}_{source}_{call_id}.json
+# 索引文件: {output_dir}/llm_audit/index.jsonl
+llm_audit:
+  enabled: false                   # 是否启用 LLM 审计（全局开关）
+  output_dir: "output/llm_audit"  # 审计文件输出目录
+  include_full_prompt: true         # 是否保存完整 prompt（可能很大）
+  include_full_response: true       # 是否保存完整 response（可能很大）

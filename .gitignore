@@ -1,0 +1,22 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+build/
+dist/
+
+# Secrets — never commit
+.env
+.api_keys
+*.key
+
+# Experiment outputs (regenerable via the pipeline)
+outputs/
+ExecScan_Results/
+state.json
+
+# OS / editor
+.DS_Store
+*.swp

@@ -1,0 +1,91 @@
+=== TABLE A: 攻击技术威胁排序 (cross-scanner平均攻击成功率) ===
+technique,avg_success_rate(%),min(%),max(%),std(%),N
+skillject,22.5,0.0,100.0,38.4,49
+image_injection,69.6,0.0,100.0,29.9,56
+skillject_cloze,30.5,0.0,100.0,31.8,56
+split_image,32.0,0.0,100.0,32.2,49
+
+=== TABLE B1: 攻击成功率矩阵 skillject (行=source, 列=target, 值=攻击成功率%) ===
+source\target,scan_cisco,scan_hss,scan_ours,scan_skill_auditor,scan_skill_slowmist,scan_skill_vetter,scan_skillfortify,scan_snyk,row_avg
+scan_cisco,2.0*,0.0,0.0,0.0,0.0,0.0,70.0,100.0,24.3
+scan_hss,2.0,0.0*,0.0,0.0,0.0,0.0,94.0,100.0,28.0
+scan_ours,2.0,0.0,0.0*,0.0,0.0,0.0,48.0,100.0,21.4
+scan_skill_auditor,0.0,0.0,0.0,0.0*,0.0,0.0,66.0,100.0,23.7
+scan_skill_slowmist,0.0,0.0,0.0,0.0,0.0*,0.0,58.0,100.0,22.6
+scan_skill_vetter,2.0,0.0,0.0,0.0,0.0,0.0*,58.0,100.0,22.9
+scan_skillfortify,2.0,0.0,0.0,0.0,0.0,0.0,100.0*,100.0,14.6
+scan_snyk,N/A,N/A,N/A,N/A,N/A,N/A,N/A,—,N/A
+
+=== TABLE B2: 攻击成功率矩阵 image_injection ===
+source\target,scan_cisco,scan_hss,scan_ours,scan_skill_auditor,scan_skill_slowmist,scan_skill_vetter,scan_skillfortify,scan_snyk,row_avg
+scan_cisco,96.0*,68.0,0.0,84.0,78.0,74.0,94.0,100.0,71.1
+scan_hss,92.0,84.0*,0.0,78.0,56.0,78.0,94.0,100.0,71.1
+scan_ours,96.0,68.0,4.0*,54.0,52.0,52.0,78.0,100.0,71.4
+scan_skill_auditor,94.0,68.0,0.0,76.0*,62.0,66.0,92.0,100.0,68.9
+scan_skill_slowmist,96.0,76.0,0.0,68.0,58.0*,64.0,90.0,100.0,70.6
+scan_skill_vetter,93.9,73.5,0.0,69.4,55.1,69.4*,91.8,100.0,69.1
+scan_skillfortify,92.0,76.0,0.0,76.0,60.0,66.0,100.0*,100.0,67.1
+scan_snyk,92.0,78.0,0.0,80.0,54.0,72.0,94.0,100.0*,67.1
+
+=== TABLE B3: 攻击成功率矩阵 skillject_cloze ===
+source\target,scan_cisco,scan_hss,scan_ours,scan_skill_auditor,scan_skill_slowmist,scan_skill_vetter,scan_skillfortify,scan_snyk,row_avg
+scan_cisco,24.0*,14.0,6.0,22.0,34.0,32.0,38.0,100.0,35.1
+scan_hss,42.0,38.0*,16.0,30.0,4.0,0.0,56.0,100.0,35.4
+scan_ours,26.0,14.0,18.0*,38.0,22.0,22.0,38.0,100.0,37.1
+scan_skill_auditor,41.5,29.3,0.0,0.0*,0.0,0.0,43.9,100.0,30.7
+scan_skill_slowmist,28.0,28.0,0.0,0.0,0.0*,0.0,46.0,100.0,28.9
+scan_skill_vetter,42.9,28.6,0.0,0.0,0.0,0.0*,40.8,100.0,30.3
+scan_skillfortify,44.0,36.0,0.0,0.0,0.0,0.0,58.0*,100.0,25.7
+scan_snyk,32.0,40.0,0.0,0.0,0.0,0.0,72.0,100.0*,20.6
+
+=== TABLE B4: 攻击成功率矩阵 split_image ===
+source\target,scan_cisco,scan_hss,scan_ours,scan_skill_auditor,scan_skill_slowmist,scan_skill_vetter,scan_skillfortify,scan_snyk,row_avg
+scan_cisco,6.0*,6.0,4.0,18.0,12.0,16.0,54.0,100.0,30.0
+scan_hss,22.0,6.0*,2.0,18.0,14.0,16.0,68.0,100.0,34.3
+scan_ours,38.0,10.0,2.0*,16.0,30.0,28.0,20.0,100.0,34.6
+scan_skill_auditor,34.0,8.0,8.0,20.0*,16.0,16.0,62.0,100.0,34.9
+scan_skill_slowmist,38.0,4.0,6.0,22.0,28.0*,18.0,58.0,100.0,35.1
+scan_skill_vetter,46.0,14.0,6.0,20.0,22.0,16.0*,52.0,100.0,37.1
+scan_skillfortify,12.0,2.0,0.0,4.0,4.0,2.0,94.0*,100.0,17.7
+scan_snyk,N/A,N/A,N/A,N/A,N/A,N/A,N/A,—,N/A
+* = self-test (diagonal)
+
+=== TABLE C: Defender 排名 (cross-scanner攻击成功率, 越低防御越强) ===
+rank,scanner,skillject(%),image_injection(%),skillject_cloze(%),split_image(%),overall(%)
+1,scan_ours,0.0,0.0,3.1,4.3,1.8
+2,scan_skill_slowmist,0.0,59.6,8.6,16.3,22.1
+3,scan_skill_vetter,0.0,67.4,7.7,16.0,23.9
+4,scan_skill_auditor,0.0,72.8,12.9,16.3,26.8
+5,scan_hss,0.0,72.5,27.1,7.3,28.5
+6,scan_cisco,1.3,93.7,36.6,31.7,42.7
+7,scan_skillfortify,65.7,90.5,47.8,52.3,64.5
+8,scan_snyk,100.0,100.0,100.0,100.0,100.0
+
+=== TABLE D: 自测 vs 跨Scanner (per technique) ===
+technique,self_test_success_rate(%),cross_scanner_success_rate(%),gap(%)
+skillject,14.6,22.5,+7.9
+image_injection,73.4,69.6,-3.9
+skillject_cloze,29.8,30.5,+0.7
+split_image,24.6,32.0,+7.4
+
+=== TABLE E: Per-Scanner 自源 vs 他源 (过拟合分析) ===
+scanner,self_source_success_rate(%),other_source_success_rate(%),gap(%)
+scan_cisco,32.0,42.7,+10.7
+scan_hss,32.0,28.5,-3.5
+scan_ours,6.0,1.8,-4.2
+scan_skill_auditor,24.0,26.8,+2.8
+scan_skill_slowmist,21.5,22.1,+0.6
+scan_skill_vetter,21.3,23.9,+2.6
+scan_skillfortify,88.0,64.5,-23.5
+scan_snyk,100.0,100.0,+0.0
+
+=== TABLE F: Attack Source 有效性 (跨target平均攻击成功率) ===
+source,skillject(%),image_injection(%),skillject_cloze(%),split_image(%),overall(%)
+scan_cisco,24.3,71.1,35.1,30.0,40.1
+scan_hss,28.0,71.1,35.4,34.3,42.2
+scan_ours,21.4,71.4,37.1,34.6,41.1
+scan_skill_auditor,23.7,68.9,30.7,34.9,39.5
+scan_skill_slowmist,22.6,70.6,28.9,35.1,39.3
+scan_skill_vetter,22.9,69.1,30.3,37.1,39.9
+scan_skillfortify,14.6,67.1,25.7,17.7,31.3
+scan_snyk,N/A,67.1,20.6,N/A,43.9

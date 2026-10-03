@@ -1,0 +1,66 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "skillcamo"
+version = "1.0.0"
+description = "SkillCamo: image-based hidden-instruction attacks on agent-skill scanners, and ExecScan: an execution-grounded multimodal defense"
+readme = "README.md"
+license = { text = "Apache-2.0" }
+requires-python = ">=3.10"
+authors = [{ name = "SkillCamo authors" }]
+keywords = ["agent skills", "prompt injection", "security scanner", "multimodal", "red teaming"]
+
+# Core: attacks (SkillCamo x3 + SkillJect), defense (ExecScan), unified
+# scanning framework, and the lightweight baseline scanners (SkillFortify,
+# Auditor/Vetter/SlowMist Claude-CLI skills).
+dependencies = [
+    "click>=8.1.0",
+    "openai>=1.40.0",
+    "anthropic>=0.39.0",
+    "pillow>=10.0.0",
+    "numpy>=1.24.0",
+    "pyyaml>=6.0",
+    "python-dotenv>=1.0.0",
+    "python-frontmatter>=1.1.0",
+    "rich>=13.0.0",
+]
+
+[project.optional-dependencies]
+# scan_hss baseline (LLM-guard based, pulls torch/onnxruntime)
+hss = [
+    "llm-guard>=0.3.16",
+    "torch>=2.0.0",
+    "onnxruntime>=1.16.0",
+]
+# scan_cisco baseline (vendored, see skillcamo/scan_cisco/PROVENANCE.md)
+cisco = [
+    "yara-x>=1.0.0",
+    "magika>=0.6.0",
+    "oletools>=0.60.0",
+    "confusable-homoglyphs>=3.3.0",
+    "pdfid>=1.1.0",
+    "litellm>=1.60.0",
+    "httpx>=0.28.0",
+    "fastapi>=0.115.0",
+    "pydantic>=2.6.0",
+    "tabulate>=0.9.0",
+]
+all = [
+    "skillcamo[hss,cisco]",
+]
+dev = [
+    "pytest>=8.0",
+    "ruff>=0.11",
+]
+
+[project.scripts]
+skillcamo = "skillcamo.unified_scanner.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["skillcamo*"]
+exclude = ["skillcamo.scan_cisco*", "skillcamo.scan_skillfortify*"]
+
+[tool.ruff]
+line-length = 120

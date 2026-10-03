@@ -1,0 +1,11 @@
+{
+  "owner": "codenova58",
+  "slug": "wechat-pay",
+  "displayName": "WeChat Pay",
+  "latest": {
+    "version": "0.1.0",
+    "publishedAt": 1773762714347,
+    "commit": "https://github.com/openclaw/skills/commit/88f6ed5869e08666372b4c274e6f1e130e9f1c62"
+  },
+  "history": []
+}

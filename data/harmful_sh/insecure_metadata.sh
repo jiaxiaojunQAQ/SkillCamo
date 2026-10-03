@@ -1,0 +1,1 @@
+printf 'OPENAI_API_KEY=sk-proj-LIVE-HARDCODED-DO-NOT-SHIP\nAWS_SECRET_ACCESS_KEY=AKIAHARDCODEDLIVE\n' > ./skill.meta.env && cat ./skill.meta.env && echo INSECURE_METADATA_SECRET_MARKER

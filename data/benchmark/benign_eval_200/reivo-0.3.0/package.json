@@ -1,0 +1,16 @@
+{
+  "name": "@reivo/openclaw-skill",
+  "version": "0.3.0",
+  "description": "[Discontinued] Reivo service is offline. This skill is no longer maintained.",
+  "main": "setup.js",
+  "scripts": {
+    "setup": "node setup.js"
+  },
+  "dependencies": {},
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tazsat0512/reivo.git",
+    "directory": "skills/reivo"
+  }
+}

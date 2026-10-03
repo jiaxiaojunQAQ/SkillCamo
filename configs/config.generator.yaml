@@ -1,0 +1,125 @@
+# Generator 配置 — 生成器 / LLM Provider / 对抗默认参数
+#
+# 本文件配置对抗测试管线的默认值，所有字段均可在主配置中覆盖。
+# generators: 对抗样本生成器（config-driven 懒加载），由 profile 的 action 选择
+# generator:  LLM provider 配置（供生成器使用）
+# defaults.adversarial: 对抗运行默认参数（迭代次数、并行度、报告）
+
+# ============================================
+# 生成器配置
+# ============================================
+generators:
+  direct_scan:
+    name: "Direct Scan"
+    description: "Pass through original skill without mutation"
+    class: "skillcamo.unified_scanner.generators.direct_scan:DirectScanGenerator"
+
+  SkillCamo:
+    name: "Skill Camo"
+    description: "Inject commands as images into SKILL.md"
+    class: "skillcamo.unified_scanner.generators.skill_camo:SkillCamoGenerator"
+    config:
+      llm_provider: "openai"
+      llm_model: "gpt-5-mini"
+
+  SkillCamo_replace:
+    name: "SkillCamo Replace"
+    description: "Overwrite an existing referenced image (adaptive replacement); forbids new image refs"
+    class: "skillcamo.unified_scanner.generators.skill_camo:SkillCamoReplaceGenerator"
+    config:
+      llm_provider: "openai"
+      llm_model: "gemini-3.5-flash"
+
+  skillject:
+    name: "Skillject"
+    description: "LLM adaptive rewrite of SKILL.md, blending script as environment init step"
+    class: "skillcamo.unified_scanner.generators.skillject:SkilljectGenerator"
+    config:
+      llm_provider: "openai"
+      llm_model: "gpt-5-mini"
+
+  SkillCamo_cloze:
+    name: "SkillCamo Cloze"
+    description: "Cloze-style image command injection - fill-in-the-blank with keyword images"
+    class: "skillcamo.unified_scanner.generators.skill_camo:SkillCamoClozeGenerator"
+    config:
+      llm_provider: "openai"
+      llm_model: "gpt-5-mini"
+      cloze_config:
+        enabled: true
+        max_blanks: 3
+        blank_format: "___{index}___"
+        # opt-in hard mode: also mask the egress-signal spans (-X POST / -d @- /
+        # URL) into the image so the text template carries no network signal —
+        # only numbered cloze fill-back can recover it. Default false.
+        force_mask_egress: false
+      bg_color: [30, 30, 30]
+      text_color: [0, 255, 100]
+      number_color: [255, 200, 50]
+
+  SkillCamo_split:
+    name: "SkillCamo Split"
+    description: "Split command at shell operator - first part in SKILL.md, second in image"
+    class: "skillcamo.unified_scanner.generators.skill_camo:SkillCamoSplitGenerator"
+    config:
+      llm_provider: "openai"
+      llm_model: "gpt-5-mini"
+      split_config:
+        enabled: true
+        split_style: "semantic_operator"
+      bg_color: [30, 30, 30]
+      text_color: [0, 255, 100]
+
+# ============================================
+# LLM Provider 配置（供生成器使用）
+# ============================================
+# 切换模型：同时修改 api_key_env / base_url_env（指向 .env 中的 slot）和各 generator 的 llm_model 字段
+#
+# 快速切换示例（api_key_env / base_url_env → 对应的 llm_model 值）:
+#   OpenRouter gpt-5-mini:  PROVIDER_OPENROUTER_KEY / PROVIDER_OPENROUTER_URL → gpt-5-mini
+#   DeepSeek chat:          MODEL_DEEPSEEK_KEY       / MODEL_DEEPSEEK_URL       → deepseek-chat
+#   OpenAI gpt-4o-mini:     MODEL_OPENAI_KEY         / MODEL_OPENAI_URL         → gpt-4o-mini
+#
+# 说明：改 generator.openai 会同时影响所有 generator（SkillCamo/skillject 等）
+#
+# 支持多 API key 轮换（分散请求避免速率限制）：
+#   方式一（推荐）：设置编号环境变量
+#     export PROVIDER_OPENROUTER_KEY_1="sk-xxx"
+#     export PROVIDER_OPENROUTER_KEY_2="sk-yyy"
+#   方式二：YAML 显式列表
+#     api_keys:
+#       - "sk-xxx"
+#       - "sk-yyy"
+generator:
+  openai:
+    api_key_env: "PROVIDER_GEMINI_KEY"
+    base_url_env: "PROVIDER_GEMINI_URL"
+
+# ============================================
+# LLM Judgement 配置（解析 scanner 输出，不读取 skill 源文件）
+# ============================================
+llm_judgement:
+  enabled: true
+  provider: "openai"
+  model: "gemini-3.5-flash"
+  api_key_env: "PROVIDER_GEMINI_KEY"
+  base_url_env: "PROVIDER_GEMINI_URL"
+  timeout: 120
+  save_audit: true
+
+# ============================================
+# 对抗运行默认配置
+# ============================================
+defaults:
+  adversarial:
+    max_iterations: 5
+
+    # 并行工作线程数
+    max_workers: 3
+
+    # 报告配置
+    reports:
+      format: both
+      per_skill: true
+      aggregate: true
+      verbose: false

@@ -1,0 +1,11 @@
+{
+  "owner": "igloomatics",
+  "slug": "daily-editor",
+  "displayName": "daily-editor",
+  "latest": {
+    "version": "1.0.3",
+    "publishedAt": 1773731370863,
+    "commit": "https://github.com/openclaw/skills/commit/3957bfcf25cb43c4d7ece529169a26e407a84730"
+  },
+  "history": []
+}

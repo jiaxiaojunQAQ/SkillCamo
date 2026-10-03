@@ -1,0 +1,16 @@
+{
+  "id": "davila7-claude-code-templates-cli-tool-components-skills-scientific-scientific-brainstorming-skill-md",
+  "name": "scientific-brainstorming",
+  "author": "davila7",
+  "description": "Research ideation partner. Generate hypotheses, explore interdisciplinary connections, challenge assumptions, develop methodologies, identify research gaps, for creative scientific problem-solving.",
+  "githubUrl": "https://github.com/davila7/claude-code-templates/tree/main/cli-tool/components/skills/scientific/scientific-brainstorming",
+  "branch": "main",
+  "path": "SKILL.md",
+  "category": "",
+  "tags": [],
+  "file_count": 2,
+  "files": [
+    "SKILL.md",
+    "resources/brainstorming_methods.md"
+  ]
+}

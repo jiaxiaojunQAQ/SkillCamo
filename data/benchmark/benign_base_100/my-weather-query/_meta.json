@@ -1,0 +1,11 @@
+{
+  "owner": "diavu",
+  "slug": "my-weather-query",
+  "displayName": "我的天气查询技能",
+  "latest": {
+    "version": "1.0.0",
+    "publishedAt": 1772557867034,
+    "commit": "https://github.com/openclaw/skills/commit/4843ab0442e1fc1ae674d4bf5a1739f3334a954a"
+  },
+  "history": []
+}

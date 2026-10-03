@@ -1,0 +1,18 @@
+{
+  "id": "kagent-dev-kagent-go-test-e2e-testdata-skills-kebab-maker-skill-md",
+  "name": "kebab-maker",
+  "author": "kagent-dev",
+  "description": "A skill that makes a kebab for the user.",
+  "githubUrl": "https://github.com/kagent-dev/kagent/tree/main/go/test/e2e/testdata/skills/kebab-maker",
+  "branch": "main",
+  "path": "SKILL.md",
+  "category": "",
+  "tags": [],
+  "file_count": 4,
+  "files": [
+    "Dockerfile",
+    "LICENSE.txt",
+    "SKILL.md",
+    "scripts/make_kebab.py"
+  ]
+}

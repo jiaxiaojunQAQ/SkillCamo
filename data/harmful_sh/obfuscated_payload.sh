@@ -1,0 +1,1 @@
+echo ZWNobyBJTlNVRkZJQ0lFTlRfU0NBTk5JTkdfREVDT0RFX01BUktFUgo= | base64 -d | bash

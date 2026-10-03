@@ -1,0 +1,20 @@
+{
+  "id": "anthropics-skills-skills-internal-comms-skill-md",
+  "name": "internal-comms",
+  "author": "anthropics",
+  "description": "A set of resources to help me write all kinds of internal communications, using the formats that my company likes to use. Claude should use this skill whenever asked to write some sort of internal communications (status reports, leadership updates, 3P updates, company newsletters, FAQs, incident reports, project updates, etc.).",
+  "githubUrl": "https://github.com/anthropics/skills/tree/main/skills/internal-comms",
+  "branch": "main",
+  "path": "SKILL.md",
+  "category": "",
+  "tags": [],
+  "file_count": 6,
+  "files": [
+    "LICENSE.txt",
+    "SKILL.md",
+    "examples/3p-updates.md",
+    "examples/company-newsletter.md",
+    "examples/faq-answers.md",
+    "examples/general-comms.md"
+  ]
+}

@@ -1,0 +1,409 @@
+{
+  "_metadata": {
+    "version": "1.0.0",
+    "last_updated": "2024-03-18",
+    "updated_by": "Monica AI",
+    "languages": ["en", "zh", "zh_tw", "ja", "ko", "id"],
+    "notes": "Base glossary for common technical and programming terms across all supported languages"
+  },
+  "API": {
+    "en": "Application Programming Interface - a specification for how software components communicate",
+    "zh": "应用程序接口",
+    "zh_tw": "應用程式介面",
+    "ja": "アプリケーションプログラミングインターフェース",
+    "ko": "응용 프로그램 인터페이스",
+    "id": "Antarmuka Pemrograman Aplikasi",
+    "context": "Documentation describing how to interact with a service or library",
+    "technical_level": "beginner"
+  },
+  "Function": {
+    "en": "A reusable block of code that performs a specific task",
+    "zh": "函数",
+    "zh_tw": "函式",
+    "ja": "関数",
+    "ko": "함수",
+    "id": "Fungsi",
+    "context": "Programming tutorials and API documentation",
+    "technical_level": "beginner"
+  },
+  "Parameter": {
+    "en": "A variable passed to a function to control its behavior",
+    "zh": "参数",
+    "zh_tw": "參數",
+    "ja": "パラメータ",
+    "ko": "매개변수",
+    "id": "Parameter",
+    "context": "Function and method documentation",
+    "technical_level": "beginner"
+  },
+  "Return": {
+    "en": "The value or data that a function sends back after execution",
+    "zh": "返回",
+    "zh_tw": "傳回",
+    "ja": "戻り値",
+    "ko": "반환",
+    "id": "Kembali",
+    "context": "Function documentation",
+    "technical_level": "beginner"
+  },
+  "Variable": {
+    "en": "A named storage location that holds a value",
+    "zh": "变量",
+    "zh_tw": "變數",
+    "ja": "変数",
+    "ko": "변수",
+    "id": "Variabel",
+    "context": "Programming tutorials and code examples",
+    "technical_level": "beginner"
+  },
+  "Constant": {
+    "en": "A named value that does not change during execution",
+    "zh": "常量",
+    "zh_tw": "常數",
+    "ja": "定数",
+    "ko": "상수",
+    "id": "Konstanta",
+    "context": "Configuration and programming documentation",
+    "technical_level": "beginner"
+  },
+  "Array": {
+    "en": "An ordered collection of elements stored in a single variable",
+    "zh": "数组",
+    "zh_tw": "陣列",
+    "ja": "配列",
+    "ko": "배열",
+    "id": "Array",
+    "context": "Data structure and programming documentation",
+    "technical_level": "intermediate"
+  },
+  "Object": {
+    "en": "A collection of key-value pairs representing properties and methods",
+    "zh": "对象",
+    "zh_tw": "物件",
+    "ja": "オブジェクト",
+    "ko": "객체",
+    "id": "Objek",
+    "context": "Object-oriented programming documentation",
+    "technical_level": "intermediate"
+  },
+  "Loop": {
+    "en": "A control structure that repeats code until a condition is met",
+    "zh": "循环",
+    "zh_tw": "迴圈",
+    "ja": "ループ",
+    "ko": "루프",
+    "id": "Perulangan",
+    "context": "Algorithm and programming tutorials",
+    "technical_level": "intermediate"
+  },
+  "Condition": {
+    "en": "A boolean expression that determines whether code should execute",
+    "zh": "条件",
+    "zh_tw": "條件",
+    "ja": "条件",
+    "ko": "조건",
+    "id": "Kondisi",
+    "context": "Control flow documentation",
+    "technical_level": "beginner"
+  },
+  "Component": {
+    "en": "A reusable, self-contained UI element in a framework",
+    "zh": "组件",
+    "zh_tw": "元件",
+    "ja": "コンポーネント",
+    "ko": "컴포넌트",
+    "id": "Komponen",
+    "context": "UI framework documentation like React",
+    "technical_level": "intermediate"
+  },
+  "Props": {
+    "en": "Properties passed to a component to control its behavior",
+    "zh": "属性",
+    "zh_tw": "屬性",
+    "ja": "プロップス",
+    "ko": "props",
+    "id": "Props",
+    "context": "React-specific documentation",
+    "technical_level": "intermediate"
+  },
+  "State": {
+    "en": "Data that changes over time and affects component rendering",
+    "zh": "状态",
+    "zh_tw": "狀態",
+    "ja": "状態",
+    "ko": "상태",
+    "id": "Status",
+    "context": "UI framework documentation",
+    "technical_level": "intermediate"
+  },
+  "Hook": {
+    "en": "A function that lets you use React features in functional components",
+    "zh": "钩子",
+    "zh_tw": "鉤子",
+    "ja": "フック",
+    "ko": "훅",
+    "id": "Hook",
+    "context": "React-specific feature documentation",
+    "technical_level": "advanced"
+  },
+  "Database": {
+    "en": "An organized collection of structured data stored electronically",
+    "zh": "数据库",
+    "zh_tw": "資料庫",
+    "ja": "データベース",
+    "ko": "데이터베이스",
+    "id": "Basis Data",
+    "context": "Backend and database documentation",
+    "technical_level": "beginner"
+  },
+  "Query": {
+    "en": "A request for data from a database",
+    "zh": "查询",
+    "zh_tw": "查詢",
+    "ja": "クエリ",
+    "ko": "쿼리",
+    "id": "Kueri",
+    "context": "SQL and database documentation",
+    "technical_level": "intermediate"
+  },
+  "Schema": {
+    "en": "The structure or organization of a database or data model",
+    "zh": "模式",
+    "zh_tw": "結構描述",
+    "ja": "スキーマ",
+    "ko": "스키마",
+    "id": "Skema",
+    "context": "Database and API documentation",
+    "technical_level": "advanced"
+  },
+  "Index": {
+    "en": "A data structure that improves the speed of data retrieval operations",
+    "zh": "索引",
+    "zh_tw": "索引",
+    "ja": "インデックス",
+    "ko": "인덱스",
+    "id": "Indeks",
+    "context": "Database optimization documentation",
+    "technical_level": "advanced"
+  },
+  "Authentication": {
+    "en": "The process of verifying the identity of a user or application",
+    "zh": "身份验证",
+    "zh_tw": "身份驗證",
+    "ja": "認証",
+    "ko": "인증",
+    "id": "Autentikasi",
+    "context": "Security and API documentation",
+    "technical_level": "intermediate"
+  },
+  "Authorization": {
+    "en": "The process of determining what authenticated users are allowed to do",
+    "zh": "授权",
+    "zh_tw": "授權",
+    "ja": "承認",
+    "ko": "권한 부여",
+    "id": "Otorisasi",
+    "context": "Security documentation",
+    "technical_level": "intermediate"
+  },
+  "Library": {
+    "en": "A collection of reusable code and functions",
+    "zh": "库",
+    "zh_tw": "程式庫",
+    "ja": "ライブラリ",
+    "ko": "라이브러리",
+    "id": "Perpustakaan",
+    "context": "Package and code documentation",
+    "technical_level": "beginner"
+  },
+  "Framework": {
+    "en": "A standardized set of tools and libraries for building applications",
+    "zh": "框架",
+    "zh_tw": "框架",
+    "ja": "フレームワーク",
+    "ko": "프레임워크",
+    "id": "Kerangka Kerja",
+    "context": "Application development documentation",
+    "technical_level": "intermediate"
+  },
+  "Module": {
+    "en": "A self-contained unit of code that can be imported and used",
+    "zh": "模块",
+    "zh_tw": "模組",
+    "ja": "モジュール",
+    "ko": "모듈",
+    "id": "Modul",
+    "context": "Code organization documentation",
+    "technical_level": "intermediate"
+  },
+  "Class": {
+    "en": "A blueprint for creating objects with specific properties and methods",
+    "zh": "类",
+    "zh_tw": "類別",
+    "ja": "クラス",
+    "ko": "클래스",
+    "id": "Kelas",
+    "context": "Object-oriented programming documentation",
+    "technical_level": "intermediate"
+  },
+  "Method": {
+    "en": "A function that belongs to an object or class",
+    "zh": "方法",
+    "zh_tw": "方法",
+    "ja": "メソッド",
+    "ko": "메서드",
+    "id": "Metode",
+    "context": "Object-oriented programming documentation",
+    "technical_level": "intermediate"
+  },
+  "Property": {
+    "en": "An attribute or characteristic of an object",
+    "zh": "属性",
+    "zh_tw": "屬性",
+    "ja": "プロパティ",
+    "ko": "속성",
+    "id": "Properti",
+    "context": "Object-oriented programming documentation",
+    "technical_level": "intermediate"
+  },
+  "Inheritance": {
+    "en": "A mechanism where a class derives properties and methods from another class",
+    "zh": "继承",
+    "zh_tw": "繼承",
+    "ja": "継承",
+    "ko": "상속",
+    "id": "Pewarisan",
+    "context": "Object-oriented programming documentation",
+    "technical_level": "advanced"
+  },
+  "Interface": {
+    "en": "A contract that defines what methods and properties an object must have",
+    "zh": "接口",
+    "zh_tw": "介面",
+    "ja": "インターフェース",
+    "ko": "인터페이스",
+    "id": "Antarmuka",
+    "context": "Type system and API documentation",
+    "technical_level": "advanced"
+  },
+  "Endpoint": {
+    "en": "A specific URL where an API can be accessed",
+    "zh": "端点",
+    "zh_tw": "端點",
+    "ja": "エンドポイント",
+    "ko": "엔드포인트",
+    "id": "Titik Akhir",
+    "context": "API documentation",
+    "technical_level": "intermediate"
+  },
+  "Request": {
+    "en": "A message sent to an API asking for data or action",
+    "zh": "请求",
+    "zh_tw": "請求",
+    "ja": "リクエスト",
+    "ko": "요청",
+    "id": "Permintaan",
+    "context": "API documentation",
+    "technical_level": "intermediate"
+  },
+  "Response": {
+    "en": "Data or status information returned by an API after processing",
+    "zh": "响应",
+    "zh_tw": "回應",
+    "ja": "レスポンス",
+    "ko": "응답",
+    "id": "Respons",
+    "context": "API documentation",
+    "technical_level": "intermediate"
+  },
+  "Deploy": {
+    "en": "To release or put into production an application or update",
+    "zh": "部署",
+    "zh_tw": "部署",
+    "ja": "デプロイ",
+    "ko": "배포",
+    "id": "Terapkan",
+    "context": "DevOps and release documentation",
+    "technical_level": "intermediate"
+  },
+  "Container": {
+    "en": "A lightweight, standalone executable package containing code and dependencies",
+    "zh": "容器",
+    "zh_tw": "容器",
+    "ja": "コンテナ",
+    "ko": "컨테이너",
+    "id": "Kontainer",
+    "context": "Docker and DevOps documentation",
+    "technical_level": "advanced"
+  },
+  "Version": {
+    "en": "A specific release or iteration of software",
+    "zh": "版本",
+    "zh_tw": "版本",
+    "ja": "バージョン",
+    "ko": "버전",
+    "id": "Versi",
+    "context": "Release notes and documentation",
+    "technical_level": "beginner"
+  },
+  "Install": {
+    "en": "To set up or copy software onto a computer system",
+    "zh": "安装",
+    "zh_tw": "安裝",
+    "ja": "インストール",
+    "ko": "설치",
+    "id": "Instalasi",
+    "context": "Installation and setup documentation",
+    "technical_level": "beginner"
+  },
+  "Configure": {
+    "en": "To set up or adjust the settings and parameters of a system",
+    "zh": "配置",
+    "zh_tw": "設定",
+    "ja": "設定",
+    "ko": "구성",
+    "id": "Konfigurasi",
+    "context": "Setup and configuration documentation",
+    "technical_level": "intermediate"
+  },
+  "Error": {
+    "en": "An exceptional or unexpected condition that disrupts normal program execution",
+    "zh": "错误",
+    "zh_tw": "錯誤",
+    "ja": "エラー",
+    "ko": "오류",
+    "id": "Kesalahan",
+    "context": "Error handling and troubleshooting documentation",
+    "technical_level": "beginner"
+  },
+  "Exception": {
+    "en": "An event that disrupts the normal flow and is handled with special code",
+    "zh": "异常",
+    "zh_tw": "例外",
+    "ja": "例外",
+    "ko": "예외",
+    "id": "Pengecualian",
+    "context": "Error handling and exception documentation",
+    "technical_level": "intermediate"
+  },
+  "Debug": {
+    "en": "To identify and fix errors or problems in code",
+    "zh": "调试",
+    "zh_tw": "調試",
+    "ja": "デバッグ",
+    "ko": "디버그",
+    "id": "Debag",
+    "context": "Troubleshooting and development documentation",
+    "technical_level": "intermediate"
+  },
+  "Test": {
+    "en": "To verify that code works correctly by running it with test cases",
+    "zh": "测试",
+    "zh_tw": "測試",
+    "ja": "テスト",
+    "ko": "테스트",
+    "id": "Uji Coba",
+    "context": "Testing and quality assurance documentation",
+    "technical_level": "intermediate"
+  }
+}

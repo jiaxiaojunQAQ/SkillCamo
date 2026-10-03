@@ -1,0 +1,7 @@
+# llm-guard 原版库依赖
+# 使用原版库替换自定义实现，获得更准确的 ML 模型检测
+llm-guard
+
+# ONNX 运行时（用于绕过 PyTorch meta tensor 问题）
+# 默认启用 ONNX 模式以避免 "Cannot copy out of meta tensor" 错误
+onnxruntime

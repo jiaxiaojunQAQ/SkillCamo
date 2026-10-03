@@ -1,0 +1,27 @@
+NOTICE
+======
+
+SkillCamo is released under the Apache License, Version 2.0 (see LICENSE).
+
+This distribution contains third-party components vendored for
+reproducibility of the paper's baseline-scanner evaluation. Each vendored
+component retains its own license and is documented in its directory's
+PROVENANCE.md (upstream URL, version, local modifications):
+
+  skillcamo/scan_cisco/          Cisco AI Defense Skill Scanner (Apache-2.0)
+                                 https://github.com/cisco-ai-defense/skill-scanner
+  skillcamo/scan_hss/            HSS hybrid security scanner baseline
+                                 (see skillcamo/scan_hss/README.md for attribution)
+  skillcamo/scan_skillfortify/   SkillFortify static analyzer baseline
+                                 (see skillcamo/scan_skillfortify/README.md for attribution)
+  skillcamo/scan_skill_auditor/  ClawGuard Auditor, Claude Code skill form
+  skillcamo/scan_skill_vetter/   Skill Vetter, Claude Code skill form
+  skillcamo/scan_skill_slowmist/ SlowMist Agent Security skill (see its LICENSE)
+
+Local modifications to the vendored scanners are limited to evaluation
+harness concerns (directory-name leakage removal, deterministic LLM
+settings, timeout handling) and are listed in each PROVENANCE.md.
+
+The benchmark under data/benchmark/ contains adversarial skills generated
+for security research. They are provided for detection evaluation only;
+see "Responsible use" in README.md.

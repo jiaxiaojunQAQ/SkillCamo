@@ -1,0 +1,74 @@
+# Unified Attack × Scanner — paper main experiment (Seeing Is Not Screening,
+# NeurIPS 2026). One benchmark (100 benign base skills), one verdict rule
+# (max_severity ∈ {HIGH,CRITICAL} = detected; bypass otherwise), one budget
+# (T=5 feedback iterations), one 7-scanner column set (6 baselines + ExecScan).
+# per_scanner expands each attack profile into one sub-run per scanner.
+# Primary metric ASR@5 = fraction of 100 skills with final_outcome=="bypassed"
+# within <=5 iterations, read from batch_result.json.
+#
+#   skillcamo -c configs/unified_attack_scanner.yaml
+#
+# Requires API keys (see .env.example) for the LLM-driven attacks and for
+# ExecScan / HSS / Cisco's LLM stage / the Claude-CLI scanners.
+
+version: "1.0"
+includes:
+  - config.scanners.yaml
+  - config.generator.yaml
+
+run:
+  max_workers: 7
+  max_skill_workers: 4
+  retries: 2
+
+_scanners: &scanners
+  - scan_cisco
+  - scan_hss
+  - scan_execscan
+  - scan_skillfortify
+  - scan_skill_vetter
+  - scan_skill_slowmist
+  - scan_skill_auditor
+
+_bench: &bench
+  - glob: ./data/benchmark/benign_base_100/*
+
+profiles:
+  - action: direct_scan            # None baseline (no injection) → base admission rate
+    skills: *bench
+    max_iterations: 1
+    per_scanner: true
+    enabled_scanners: *scanners
+    output_dir: ./outputs/unified_attack_scanner/none/
+
+  - action: skillject
+    skills: *bench
+    harmful_sh_dir: ./data/harmful_sh
+    max_iterations: 5
+    per_scanner: true
+    enabled_scanners: *scanners
+    output_dir: ./outputs/unified_attack_scanner/skillject/
+
+  - action: SkillCamo
+    skills: *bench
+    harmful_sh_dir: ./data/harmful_sh
+    max_iterations: 5
+    per_scanner: true
+    enabled_scanners: *scanners
+    output_dir: ./outputs/unified_attack_scanner/skillcamo/
+
+  - action: SkillCamo_cloze
+    skills: *bench
+    harmful_sh_dir: ./data/harmful_sh
+    max_iterations: 5
+    per_scanner: true
+    enabled_scanners: *scanners
+    output_dir: ./outputs/unified_attack_scanner/cloze/
+
+  - action: SkillCamo_split
+    skills: *bench
+    harmful_sh_dir: ./data/harmful_sh
+    max_iterations: 5
+    per_scanner: true
+    enabled_scanners: *scanners
+    output_dir: ./outputs/unified_attack_scanner/split/

@@ -1,0 +1,11 @@
+{
+  "owner": "leocryptoflow",
+  "slug": "bytedance",
+  "displayName": "Bytedance",
+  "latest": {
+    "version": "1.0.0",
+    "publishedAt": 1772562561140,
+    "commit": "https://github.com/openclaw/skills/commit/e1a17b36b23de60a26ef7324fe270d89f1ec6320"
+  },
+  "history": []
+}

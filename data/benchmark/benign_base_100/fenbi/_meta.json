@@ -1,0 +1,17 @@
+{
+  "owner": "zhangifonly",
+  "slug": "fenbi",
+  "displayName": "Fenbi",
+  "latest": {
+    "version": "1.0.0",
+    "publishedAt": 1773652780235,
+    "commit": "https://github.com/openclaw/skills/commit/b30482029ae19ed4d60fa0f5c903349e6d95c23b"
+  },
+  "history": [
+    {
+      "version": "0.1.0",
+      "publishedAt": 1772984156249,
+      "commit": "https://github.com/openclaw/skills/commit/d65c2fe8fc87a773a8bf7f4ad75ff89f97b0340f"
+    }
+  ]
+}

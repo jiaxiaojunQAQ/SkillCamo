@@ -1,0 +1,11 @@
+{
+  "owner": "haohanyang92",
+  "slug": "a-stock-volume-price",
+  "displayName": "A股量价关系验证",
+  "latest": {
+    "version": "1.0.0",
+    "publishedAt": 1773598413776,
+    "commit": "https://github.com/openclaw/skills/commit/63bd2d4d92f97d25820a4e57fce07c420b8fa948"
+  },
+  "history": []
+}

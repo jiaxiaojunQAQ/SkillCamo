@@ -1,0 +1,11 @@
+{
+  "owner": "caidongyun",
+  "slug": "security-skill-hub",
+  "displayName": "安全技能插座",
+  "latest": {
+    "version": "2.2.1",
+    "publishedAt": 1773644359342,
+    "commit": "https://github.com/openclaw/skills/commit/60756dc4470e9a3dd6b93e6d04cf82cabffe906c"
+  },
+  "history": []
+}
