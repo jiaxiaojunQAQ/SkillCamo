@@ -1,0 +1,6 @@
+metric,skillfortify,cisco,hss,auditor,vetter,slowmist,execscan
+FPR_benign_%,4,13,31,0,48,0,6
+ASR_SkillJect_%,99,0,1,100,92,100,7
+ASR_SkillCamo_%,100,100,79,100,97,100,7
+ASR_Cloze_%,71,5,24,100,96,100,31
+ASR_Split_%,93,7,13,100,97,100,19
