@@ -1,0 +1,55 @@
+# 7-column paper reproduction — the 5 baseline scanners not yet run.
+# (scan_skillfortify + scan_execscan already produced in outputs/mini_gpt5;
+#  merge those with these for the full 7-scanner table.)
+#   attacks {SkillCamo, SkillCamo_cloze, SkillCamo_split}
+#   × scanners {cisco, hss, auditor, vetter, slowmist}
+#   × same first 3 benign base skills, T=5 (ASR@5).
+# Models: cisco/hss -> gemini-3-flash-preview; auditor/vetter/slowmist ->
+#   claude-haiku-4-5 via Claude CLI (paper). Attacks -> gpt-5-mini.
+#   skillcamo -c configs/mini7_gpt5.yaml --force
+
+version: "1.0"
+includes:
+  - config.scanners.yaml
+  - config.generator.yaml
+
+run:
+  max_workers: 2
+  max_skill_workers: 2
+  retries: 1
+
+_scanners: &scanners
+  - scan_cisco
+  - scan_hss
+  - scan_skill_auditor
+  - scan_skill_vetter
+  - scan_skill_slowmist
+
+_bench: &bench
+  - glob: ./data/benchmark/benign_base_100/*
+    limit: 3
+
+profiles:
+  - action: SkillCamo
+    skills: *bench
+    harmful_sh_dir: ./data/harmful_sh
+    max_iterations: 5
+    per_scanner: true
+    enabled_scanners: *scanners
+    output_dir: ./outputs/mini7_gpt5/skillcamo/
+
+  - action: SkillCamo_cloze
+    skills: *bench
+    harmful_sh_dir: ./data/harmful_sh
+    max_iterations: 5
+    per_scanner: true
+    enabled_scanners: *scanners
+    output_dir: ./outputs/mini7_gpt5/cloze/
+
+  - action: SkillCamo_split
+    skills: *bench
+    harmful_sh_dir: ./data/harmful_sh
+    max_iterations: 5
+    per_scanner: true
+    enabled_scanners: *scanners
+    output_dir: ./outputs/mini7_gpt5/split/

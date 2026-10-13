@@ -92,18 +92,21 @@ generators:
 #       - "sk-yyy"
 generator:
   openai:
-    api_key_env: "PROVIDER_GEMINI_KEY"
-    base_url_env: "PROVIDER_GEMINI_URL"
+    api_key_env: "MODEL_OPENAI_KEY"
+    base_url_env: "MODEL_OPENAI_URL"
 
 # ============================================
 # LLM Judgement 配置（解析 scanner 输出，不读取 skill 源文件）
 # ============================================
 llm_judgement:
-  enabled: true
+  # Disabled for the gpt-5-mini mini-matrix: skillfortify/execscan return
+  # structured findings, so detection is read from severity directly. (The old
+  # default pointed at gemini-3.5-flash, which does not exist.)
+  enabled: false
   provider: "openai"
-  model: "gemini-3.5-flash"
-  api_key_env: "PROVIDER_GEMINI_KEY"
-  base_url_env: "PROVIDER_GEMINI_URL"
+  model: "gpt-5-mini"
+  api_key_env: "MODEL_OPENAI_KEY"
+  base_url_env: "MODEL_OPENAI_URL"
   timeout: 120
   save_audit: true
 

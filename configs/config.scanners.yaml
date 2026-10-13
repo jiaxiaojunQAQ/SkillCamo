@@ -38,7 +38,7 @@ scanners:
   scan_skill_auditor:
     timeout: 600
     priority: 2
-    model: claude-sonnet-4-6
+    model: claude-haiku-4-5
 
   # LiteLLM 后端，支持 OpenAI / Anthropic / Azure / Bedrock 等
   scan_cisco:
@@ -47,41 +47,44 @@ scanners:
     # LiteLLM 按模型名前缀路由；用 openai/ 前缀强制走 OpenAI 兼容路径
     api_key_env: PROVIDER_GEMINI_KEY
     base_url_env: PROVIDER_GEMINI_URL
-    model: openai/gemini-3.5-flash
+    model: openai/gemini-3-flash-preview
 
   # 纯静态分析，无任何外部 API 调用，无需 env var
   scan_skillfortify:
     timeout: 600
     priority: 1
 
-  # OpenAI 兼容 API，三阶段混合扫描
+  # OpenAI 兼容 API，三阶段混合扫描。
+  # 注意：hss 的 phase3 (hybrid_classifier) 硬编码读 OPENAI_API_KEY 且用 max_tokens，
+  # 所以只能走 OpenAI 官方端点 + 支持 max_tokens 的模型（gpt-4o-mini）。论文未指定 hss 模型。
   scan_hss:
     timeout: 600
     priority: 3
-    api_key_env: PROVIDER_GEMINI_KEY
-    base_url_env: PROVIDER_GEMINI_URL
-    model: gemini-3.5-flash
+    api_key_env: MODEL_OPENAI_KEY
+    base_url_env: MODEL_OPENAI_URL
+    model: gpt-4o-mini
 
   # 基于 Claude Code CLI，无需 env var
   scan_skill_vetter:
     timeout: 600
     priority: 2
-    model: claude-sonnet-4-6
+    model: claude-haiku-4-5
 
   # 基于 Claude Code CLI，无需 env var
   scan_skill_slowmist:
     timeout: 600
     priority: 2
-    model: claude-sonnet-4-6
+    model: claude-haiku-4-5
 
   # OpenAI 兼容 API 双阶段执行模拟扫描（本文方法 ExecScan）
+  # 对齐论文主实验：gpt-5-mini 作两阶段 backbone（走 OpenAI 官方端点）
   scan_execscan:
     timeout: 600
     priority: 3
-    api_key_env: PROVIDER_GEMINI_KEY
-    base_url_env: PROVIDER_GEMINI_URL
-    model_a: gemini-3.5-flash
-    model_b: gemini-3.5-flash
+    api_key_env: MODEL_OPENAI_KEY
+    base_url_env: MODEL_OPENAI_URL
+    model_a: gpt-5-mini
+    model_b: gpt-5-mini
 
 # LLM 调用审计配置 — 保存所有 LLM 输入输出到文件
 # 审计文件保存位置: {output_dir}/llm_audit/{timestamp}_{source}_{call_id}.json

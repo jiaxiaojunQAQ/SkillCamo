@@ -1,0 +1,49 @@
+# Paper-faithful mini reproduction of the SkillCamo family, gpt-5-mini backbone.
+#   attacks {SkillCamo, SkillCamo_cloze, SkillCamo_split}  (the paper's method)
+#   × scanners {scan_skillfortify (static baseline), scan_execscan (paper defense)}
+#   × first 3 benign base skills, T=5 feedback iterations (ASR@5 as in the paper).
+# per_scanner expands each attack into one closed-loop run per scanner.
+#   skillcamo -c configs/mini_gpt5.yaml --force
+
+version: "1.0"
+includes:
+  - config.scanners.yaml
+  - config.generator.yaml
+
+run:
+  max_workers: 2
+  max_skill_workers: 2
+  retries: 1
+
+_scanners: &scanners
+  - scan_skillfortify
+  - scan_execscan
+
+_bench: &bench
+  - glob: ./data/benchmark/benign_base_100/*
+    limit: 3
+
+profiles:
+  - action: SkillCamo
+    skills: *bench
+    harmful_sh_dir: ./data/harmful_sh
+    max_iterations: 5
+    per_scanner: true
+    enabled_scanners: *scanners
+    output_dir: ./outputs/mini_gpt5/skillcamo/
+
+  - action: SkillCamo_cloze
+    skills: *bench
+    harmful_sh_dir: ./data/harmful_sh
+    max_iterations: 5
+    per_scanner: true
+    enabled_scanners: *scanners
+    output_dir: ./outputs/mini_gpt5/cloze/
+
+  - action: SkillCamo_split
+    skills: *bench
+    harmful_sh_dir: ./data/harmful_sh
+    max_iterations: 5
+    per_scanner: true
+    enabled_scanners: *scanners
+    output_dir: ./outputs/mini_gpt5/split/
