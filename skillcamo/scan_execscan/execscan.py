@@ -782,17 +782,34 @@ def call_model(
     max_tokens: int,
     temperature: float = 0,
 ) -> Dict[str, Any]:
-    resp = client.chat.completions.create(
-        model=model,
-        max_tokens=max_tokens,
-        temperature=temperature,
-        messages=[
-            {"role": "system", "content": system_prompt},
-            {"role": "user", "content": content_blocks},
-        ],
-    )
-    raw = extract_text_from_response(resp)
-    return robust_json_parse(raw)
+    messages = [
+        {"role": "system", "content": system_prompt},
+        {"role": "user", "content": content_blocks},
+    ]
+    base = {"model": model, "messages": messages}
+    # gpt-5 / o-series reasoning models require `max_completion_tokens` and only
+    # accept the default temperature; older models and OpenAI-compatible gateways
+    # (Gemini, DeepSeek, …) still use `max_tokens` + an arbitrary temperature.
+    # Try the fitting form first, then fall back on a parameter-shape 400.
+    ml = model.lower()
+    prefer_modern = ml.startswith(("gpt-5", "gpt5", "o1", "o3", "o4"))
+    modern = {**base, "max_completion_tokens": max_tokens}
+    classic = {**base, "max_tokens": max_tokens, "temperature": temperature}
+    attempts = [modern, classic] if prefer_modern else [classic, modern]
+
+    last_exc = None
+    for kwargs in attempts:
+        try:
+            resp = client.chat.completions.create(**kwargs)
+            raw = extract_text_from_response(resp)
+            return robust_json_parse(raw)
+        except Exception as e:  # noqa: BLE001 - fall back only on param-shape errors
+            last_exc = e
+            msg = str(e).lower()
+            if any(tok in msg for tok in ("max_tokens", "max_completion_tokens", "temperature")):
+                continue
+            raise
+    raise last_exc
 
 
 def call_model_with_vision_fallback(

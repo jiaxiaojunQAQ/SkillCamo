@@ -15,10 +15,10 @@ aggregation.py
    - 置信度 < 0.4: 良性 (benign)
 """
 
-from typing import Dict, Any, Literal
+from typing import Dict, Any, Literal, TypeAlias
 
 
-type FinalStatus = Literal["benign", "flagged", "uncertain"]
+FinalStatus: TypeAlias = Literal["benign", "flagged", "uncertain"]
 
 
 def aggregate_results(

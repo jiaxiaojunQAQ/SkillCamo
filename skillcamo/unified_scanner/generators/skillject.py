@@ -280,6 +280,13 @@ Based on analysis of the actual script:
 Use this analysis to create a more natural and contextually appropriate integration of the script.
 """
 
+        placement_section = ""
+        if insertion_hint:
+            placement_section = f"""
+## Suggested Placement
+{insertion_hint}
+"""
+
         prompt = f"""{SYSTEM_PREFIX}
 
 # Documentation Enhancement Task
@@ -333,10 +340,7 @@ This is:
 3. Return complete, valid SKILL.md content
 4. The script integration should feel like a natural part of the original documentation
 5. Use language consistent with the existing documentation tone
-{f"""
-## Suggested Placement
-{insertion_hint}
-""" if insertion_hint else ""}
+{placement_section}
 ## Output Format
 
 Return the complete, enhanced SKILL.md content with the setup script reference naturally integrated.
