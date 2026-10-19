@@ -20,3 +20,7 @@ state.json
 # OS / editor
 .DS_Store
 *.swp
+
+# AI-assistant session logs (dev-only, never ship)
+.claude/chat/
+**/.claude/chat/

@@ -1,6 +1,7 @@
 # SkillCamo
 
-**Seeing Is Not Screening: Hidden Visual Instructions Evade Agent Skill Scanners** (NeurIPS 2026)
+**Seeing Is Not Screening: Multimodal Hidden Instruction Attacks on Agent Skill Scanners**
+(NeurIPS 2026 · [arXiv:2606.18198](https://arxiv.org/abs/2606.18198))
 
 SkillCamo is the official artifact of the paper: the **SkillCamo attack family**
 that hides malicious instructions inside images bundled with agent skills, the
@@ -136,10 +137,14 @@ examples/  tests/
 ## Citation
 
 ```bibtex
-@inproceedings{skillcamo2026,
-  title     = {Seeing Is Not Screening: Hidden Visual Instructions Evade Agent Skill Scanners},
-  booktitle = {NeurIPS},
-  year      = {2026}
+@inproceedings{jia2026skillcamo,
+  title     = {Seeing Is Not Screening: Multimodal Hidden Instruction Attacks on Agent Skill Scanners},
+  author    = {Jia, Xiaojun and Liao, Jie and Qin, Simeng and Ma, Ke and Guo, Wenbo and Feng, Yebo and Liu, Aishan and Liu, Yang},
+  booktitle = {Advances in Neural Information Processing Systems (NeurIPS)},
+  year      = {2026},
+  eprint    = {2606.18198},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.CR}
 }
 ```
 
