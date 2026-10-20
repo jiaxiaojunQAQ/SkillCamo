@@ -1,7 +1,21 @@
-# SkillCamo
+<h1 align="center">SkillCamo</h1>
 
-**Seeing Is Not Screening: Multimodal Hidden Instruction Attacks on Agent Skill Scanners**
-(NeurIPS 2026 · [arXiv:2606.18198](https://arxiv.org/abs/2606.18198))
+<p align="center">
+  <b>Seeing Is Not Screening: Multimodal Hidden Instruction Attacks on Agent Skill Scanners</b>
+</p>
+
+<p align="center">
+  <a href="https://arxiv.org/abs/2606.18198"><img alt="arXiv" src="https://img.shields.io/badge/arXiv-2606.18198-b31b1b.svg"></a>
+  <img alt="NeurIPS 2026" src="https://img.shields.io/badge/NeurIPS-2026-68217a.svg">
+  <img alt="Python" src="https://img.shields.io/badge/python-%E2%89%A53.10-3776ab.svg">
+  <a href="LICENSE"><img alt="License" src="https://img.shields.io/badge/license-Apache--2.0-green.svg"></a>
+</p>
+
+<p align="center">
+  <img src="assets/figures/fig1_overview.png" width="880" alt="Overview of the multimodal hidden-instruction threat">
+</p>
+<p align="center"><em>A skill looks benign to text-only scanners, yet a multimodal agent jointly reads
+the docs, code, and bundled image at runtime — recovering a hidden instruction and triggering unsafe execution.</em></p>
 
 SkillCamo is the official artifact of the paper: the **SkillCamo attack family**
 that hides malicious instructions inside images bundled with agent skills, the
@@ -17,6 +31,12 @@ evaluation framework that reproduces the paper's attack×scanner matrices agains
 
 ### Attacks (`skillcamo/attacks/`)
 
+<p align="center">
+  <img src="assets/figures/fig2_skillcamo.png" width="860" alt="SkillCamo attack pipeline">
+</p>
+<p align="center"><em>SkillCamo: analyze the skill → render the command into a benign-looking image →
+rewrite the whole <code>SKILL.md</code> around it → refine against scanner feedback.</em></p>
+
 | Generator | Paper name | Description |
 |-----------|-----------|-------------|
 | `SkillCamo` | SkillCamo | LLM-driven rewrite of `SKILL.md` + the full malicious instruction rendered into a bundled image |
@@ -28,6 +48,12 @@ evaluation framework that reproduces the paper's attack×scanner matrices agains
 All LLM-driven attacks iterate against scanner feedback (max `k=5` in the paper).
 
 ### Defense (`skillcamo/defenses/execscan/`)
+
+<p align="center">
+  <img src="assets/figures/fig3_execscan.png" width="860" alt="ExecScan architecture">
+</p>
+<p align="center"><em>ExecScan: Phase I builds a multimodal artifact profile; Phase II recovers latent
+image-carried instructions and simulates execution over K contexts to judge risk.</em></p>
 
 **ExecScan** — the paper's scanner. Two-phase execution-grounded analysis with
 multimodal evidence recovery (reads the images, reconstructs the hidden
@@ -115,6 +141,23 @@ Each profile×scanner cell writes `batch_result.json` + `summary.json` under
 Notes on budget: the full matrix issues a large number of LLM calls (attacks +
 ExecScan + HSS + Cisco's LLM stage + Claude-CLI scanners). Start with a subset
 by editing `enabled_scanners` / the skill glob.
+
+### Headline result
+
+ASR@5 (%) — fraction of attacks that **evade** each scanner (lower = stronger defense),
+plus FPR on the benign set. 100 base skills, `gpt-5-mini` backbone
+(full numbers in [`results/reproduction_100skill_gpt5mini.csv`](results/reproduction_100skill_gpt5mini.csv)):
+
+| | SkillFortify | Cisco | HSS | Auditor | Vetter | SlowMist | **ExecScan** |
+|---|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| **FPR** (benign flagged) | 4 | 13 | 31 | 0 | 48 | 0 | **6** |
+| **SkillCamo** (full-image) | 100 | 100 | 79 | 100 | 97 | 100 | **7** |
+| SkillCamo-Cloze | 71 | 5 | 24 | 100 | 96 | 100 | **31** |
+| SkillCamo-Split | 93 | 7 | 13 | 100 | 97 | 100 | **19** |
+| SkillJect (text-only) | 99 | 0 | 1 | 100 | 92 | 100 | **7** |
+
+The full-image **SkillCamo defeats all six baselines (79–100% ASR)** while **ExecScan holds it to
+7%** at a low 6% FPR — matching the paper's headline (ExecScan ≈8% on SkillCamo).
 
 ## Repository layout
 
