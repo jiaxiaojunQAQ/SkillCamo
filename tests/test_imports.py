@@ -12,7 +12,7 @@ def test_core_imports():
     import skillcamo.unified_scanner.entry  # noqa: F401
     import skillcamo.unified_scanner.pipeline.orchestrator  # noqa: F401
     import skillcamo.unified_scanner.pipeline.scanner_wrapper  # noqa: F401
-    import skillcamo.scan_execscan  # noqa: F401
+    import skillcamo.defenses.execscan  # noqa: F401
 
 
 def test_generator_registry_contains_exactly_paper_attacks():

@@ -53,7 +53,7 @@ class ScanExecscanAdapter(BaseAdapter):
 
     def _load_review_skill(self):
         try:
-            return importlib.import_module("skillcamo.scan_execscan").review_skill
+            return importlib.import_module("skillcamo.defenses.execscan").review_skill
         except ImportError:
             scanners_root = get_scanner_path("scan_execscan").parent
             root = scanners_root.parent
@@ -61,7 +61,7 @@ class ScanExecscanAdapter(BaseAdapter):
                 path_str = str(path)
                 if path_str not in sys.path:
                     sys.path.insert(0, path_str)
-            return importlib.import_module("skillcamo.scan_execscan").review_skill
+            return importlib.import_module("skillcamo.defenses.execscan").review_skill
 
     def _check_availability(self) -> bool:
         scanner_path = get_scanner_path("scan_execscan")

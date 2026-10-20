@@ -60,7 +60,9 @@ skillcamo = "skillcamo.unified_scanner.cli:main"
 
 [tool.setuptools.packages.find]
 include = ["skillcamo*"]
-exclude = ["skillcamo.scan_cisco*", "skillcamo.scan_skillfortify*"]
+# Vendored baseline scanners live under defenses/baselines/ and are loaded via
+# sys.path (see framework paths.py), not imported as skillcamo subpackages.
+exclude = ["skillcamo.defenses.baselines*"]
 
 [tool.ruff]
 line-length = 120

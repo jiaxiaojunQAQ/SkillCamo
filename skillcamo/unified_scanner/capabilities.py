@@ -142,7 +142,7 @@ def check_availability(scanner_name: str) -> tuple[bool, str | None]:
             if not scan_execscan_path.exists():
                 return False, f"扫描器目录不存在: {scan_execscan_path}"
             try:
-                importlib.import_module("skillcamo.scan_execscan")
+                importlib.import_module("skillcamo.defenses.execscan")
             except ImportError as e:
                 return False, f"模块导入失败: {e}"
             return True, None

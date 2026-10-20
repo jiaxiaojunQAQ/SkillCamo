@@ -20,15 +20,18 @@ PROJECT_ROOT = SCANNERS_ROOT.parent
 
 
 # 默认扫描器路径配置（使用相对路径）
+# 攻击/防御重构后：baseline 防御归入 defenses/baselines/，ExecScan 在 defenses/execscan/
+BASELINES_ROOT = SCANNERS_ROOT / "defenses" / "baselines"
 DEFAULT_SCANNER_PATHS = {
-    # 主要扫描器（在 SCANNERS_ROOT 下）
-    "scan_skill_auditor": SCANNERS_ROOT / "scan_skill_auditor",
-    "scan_cisco": SCANNERS_ROOT / "scan_cisco",
-    "scan_hss": SCANNERS_ROOT / "scan_hss",
-    "scan_skill_vetter": SCANNERS_ROOT / "scan_skill_vetter",
-    "scan_skillfortify": SCANNERS_ROOT / "scan_skillfortify",
-    "scan_skill_slowmist": SCANNERS_ROOT / "scan_skill_slowmist",
-    "scan_execscan": SCANNERS_ROOT / "scan_execscan",
+    # baseline 防御（归入 defenses/baselines/ 下）
+    "scan_skill_auditor": BASELINES_ROOT / "scan_skill_auditor",
+    "scan_cisco": BASELINES_ROOT / "scan_cisco",
+    "scan_hss": BASELINES_ROOT / "scan_hss",
+    "scan_skill_vetter": BASELINES_ROOT / "scan_skill_vetter",
+    "scan_skillfortify": BASELINES_ROOT / "scan_skillfortify",
+    "scan_skill_slowmist": BASELINES_ROOT / "scan_skill_slowmist",
+    # 本文防御 ExecScan
+    "scan_execscan": SCANNERS_ROOT / "defenses" / "execscan",
 }
 
 

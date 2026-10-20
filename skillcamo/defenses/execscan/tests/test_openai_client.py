@@ -5,7 +5,7 @@ import unittest
 from types import SimpleNamespace
 from unittest.mock import patch
 
-from skillcamo.scan_execscan import execscan
+from skillcamo.defenses.execscan import execscan
 
 
 class ScanExecscanOpenAIClientTests(unittest.TestCase):
