@@ -14,7 +14,7 @@ CLI during evaluation. They are the paper's "skill-based" baseline scanners.
 
 All three run through the locally installed `claude` CLI
 (Claude Code v2.1.108 in the paper, Haiku 4.5 backbone), orchestrated by
-`skillcamo/unified_scanner/adapters/scan_skill_{auditor,vetter,slowmist}.py`.
+`skillcamo/framework/adapters/scan_skill_{auditor,vetter,slowmist}.py`.
 
 ## Local modifications (evaluation harness only)
 

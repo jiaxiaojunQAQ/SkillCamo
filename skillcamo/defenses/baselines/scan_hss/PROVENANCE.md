@@ -12,4 +12,4 @@
 - Hardened for batch evaluation (error isolation, deterministic settings).
 - Directory-name leakage removal (evaluation hygiene).
 
-Invoked via `skillcamo/unified_scanner/adapters/scan_hss.py`.
+Invoked via `skillcamo/framework/adapters/scan_hss.py`.

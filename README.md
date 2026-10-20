@@ -15,7 +15,7 @@ evaluation framework that reproduces the paper's attack×scanner matrices agains
 
 ## What's inside
 
-### Attacks (`skillcamo/unified_scanner/generators/`)
+### Attacks (`skillcamo/attacks/`)
 
 | Generator | Paper name | Description |
 |-----------|-----------|-------------|
@@ -27,7 +27,7 @@ evaluation framework that reproduces the paper's attack×scanner matrices agains
 
 All LLM-driven attacks iterate against scanner feedback (max `k=5` in the paper).
 
-### Defense (`skillcamo/scan_execscan/`)
+### Defense (`skillcamo/defenses/execscan/`)
 
 **ExecScan** — the paper's scanner. Two-phase execution-grounded analysis with
 multimodal evidence recovery (reads the images, reconstructs the hidden
@@ -35,7 +35,7 @@ instruction, simulates execution over `K=5` contexts). In the paper it cuts
 SkillCamo ASR to 8% (vs. 78–100% for baseline scanners) with the best F1 on
 the 200-skill benign set.
 
-### Baseline scanners (`skillcamo/scan_*`)
+### Baseline scanners (`skillcamo/defenses/baselines/`)
 
 Six baselines as evaluated in the paper, vendored with provenance notes
 (`PROVENANCE.md` in each directory):
@@ -79,13 +79,13 @@ Scan a single skill with ExecScan:
 ```bash
 skillcamo -c configs/unified_attack_scanner.yaml ./path/to/skill
 # or directly:
-python -m skillcamo.scan_execscan.execscan ./path/to/skill
+python -m skillcamo.defenses.execscan.execscan ./path/to/skill
 ```
 
 Run one attack against one skill (closed loop: rewrite → scan → feedback):
 
 ```python
-from skillcamo.unified_scanner.generators.skill_camo.orchestrator import run_injection_test
+from skillcamo.attacks.skill_camo.orchestrator import run_injection_test
 
 result = run_injection_test(
     base_skill="data/benchmark/benign_base_100/<some-skill>",
@@ -120,13 +120,16 @@ by editing `enabled_scanners` / the skill glob.
 
 ```
 skillcamo/
-  unified_scanner/       # framework: CLI, pipeline, adapters, generators
-    generators/skill_camo/   # SkillCamo / -Cloze / -Split / -Replace
-    generators/skillject.py  # SkillJect baseline attack
-    adapters/                # 7 scanner adapters (evaluation wiring)
-  scan_execscan/         # ★ ExecScan, the paper's defense
-  scan_cisco/  scan_hss/  scan_skillfortify/   # vendored baselines
-  scan_skill_auditor/  scan_skill_vetter/  scan_skill_slowmist/  # Claude-skill baselines
+  attacks/               # ★ the attack — equal billing with the defense
+    skill_camo/              # SkillCamo / -Cloze / -Split / -Replace
+    skillject.py            # SkillJect text-only baseline attack
+    direct_scan.py          # no-mutation baseline
+  defenses/
+    execscan/            # ★ ExecScan, the paper's defense
+    baselines/           # the six baseline defenses, grouped
+      scan_cisco/  scan_hss/  scan_skillfortify/
+      scan_skill_auditor/  scan_skill_vetter/  scan_skill_slowmist/
+  framework/             # evaluation harness: CLI, pipeline, adapters, config
 configs/                 # paper experiment configs
 data/benchmark/          # 100 base + 198 benign-eval skills
 data/harmful_sh/         # payload pool for the attacks

@@ -11,4 +11,4 @@
 - Packaged as `scan_skillfortify` for the unified framework; timeout /
   error isolation for batch evaluation.
 
-Invoked via `skillcamo/unified_scanner/adapters/scan_skillfortify.py`.
+Invoked via `skillcamo/framework/adapters/scan_skillfortify.py`.

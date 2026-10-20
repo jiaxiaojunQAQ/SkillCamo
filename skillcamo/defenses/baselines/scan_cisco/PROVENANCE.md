@@ -14,4 +14,4 @@
 - Deterministic LLM settings (temperature handling unified across scanners).
 - Timeouts / error isolation for batch evaluation.
 
-Invoked via `skillcamo/unified_scanner/adapters/scan_cisco.py`.
+Invoked via `skillcamo/framework/adapters/scan_cisco.py`.
