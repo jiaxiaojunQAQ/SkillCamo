@@ -81,7 +81,7 @@ class ScanSkillAuditorAdapter(SkillBasedScannerAdapter):
     def get_skill_source_path(self) -> Path:
         """返回 skill 源文件路径"""
         try:
-            from unified_scanner.paths import get_scanner_path
+            from skillcamo.framework.paths import get_scanner_path
         except ImportError:
             from paths import get_scanner_path
         return get_scanner_path("scan_skill_auditor")

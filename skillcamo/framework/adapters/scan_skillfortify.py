@@ -19,7 +19,7 @@ logger = logging.getLogger(__name__)
 
 # 动态获取 scan_skillfortify 模块路径
 try:
-    from unified_scanner.paths import get_scanner_path
+    from skillcamo.framework.paths import get_scanner_path
     scan_skillfortify_path = get_scanner_path("scan_skillfortify")
 except ImportError:
     from paths import get_scanner_path

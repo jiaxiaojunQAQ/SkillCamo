@@ -26,7 +26,7 @@ from typing import Optional
 
 def get_default_output_root() -> Path:
     """获取默认输出根目录（项目根/outputs），基于 paths.PROJECT_ROOT 计算。"""
-    from skillcamo.unified_scanner.paths import PROJECT_ROOT
+    from skillcamo.framework.paths import PROJECT_ROOT
     return PROJECT_ROOT / "outputs"
 
 

@@ -51,7 +51,7 @@ def _make_progress_callback():
 
 # Generator 名直接作为 action，action 即 generator
 # 动态从 GeneratorRegistry 取，自动覆盖所有已注册 generator
-from .generators import GeneratorRegistry as _GeneratorRegistry
+from skillcamo.attacks import GeneratorRegistry as _GeneratorRegistry
 GENERATOR_ACTIONS = set(_GeneratorRegistry.list_all())
 
 UTILITY_ACTIONS = {"status", "list-scanners", "list-generators", "validate-config"}

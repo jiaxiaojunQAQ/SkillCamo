@@ -12,12 +12,12 @@ generators:
   direct_scan:
     name: "Direct Scan"
     description: "Pass through original skill without mutation"
-    class: "skillcamo.unified_scanner.generators.direct_scan:DirectScanGenerator"
+    class: "skillcamo.attacks.direct_scan:DirectScanGenerator"
 
   SkillCamo:
     name: "Skill Camo"
     description: "Inject commands as images into SKILL.md"
-    class: "skillcamo.unified_scanner.generators.skill_camo:SkillCamoGenerator"
+    class: "skillcamo.attacks.skill_camo:SkillCamoGenerator"
     config:
       llm_provider: "openai"
       llm_model: "gpt-5-mini"
@@ -25,7 +25,7 @@ generators:
   SkillCamo_replace:
     name: "SkillCamo Replace"
     description: "Overwrite an existing referenced image (adaptive replacement); forbids new image refs"
-    class: "skillcamo.unified_scanner.generators.skill_camo:SkillCamoReplaceGenerator"
+    class: "skillcamo.attacks.skill_camo:SkillCamoReplaceGenerator"
     config:
       llm_provider: "openai"
       llm_model: "gemini-3.5-flash"
@@ -33,7 +33,7 @@ generators:
   skillject:
     name: "Skillject"
     description: "LLM adaptive rewrite of SKILL.md, blending script as environment init step"
-    class: "skillcamo.unified_scanner.generators.skillject:SkilljectGenerator"
+    class: "skillcamo.attacks.skillject:SkilljectGenerator"
     config:
       llm_provider: "openai"
       llm_model: "gpt-5-mini"
@@ -41,7 +41,7 @@ generators:
   SkillCamo_cloze:
     name: "SkillCamo Cloze"
     description: "Cloze-style image command injection - fill-in-the-blank with keyword images"
-    class: "skillcamo.unified_scanner.generators.skill_camo:SkillCamoClozeGenerator"
+    class: "skillcamo.attacks.skill_camo:SkillCamoClozeGenerator"
     config:
       llm_provider: "openai"
       llm_model: "gpt-5-mini"
@@ -60,7 +60,7 @@ generators:
   SkillCamo_split:
     name: "SkillCamo Split"
     description: "Split command at shell operator - first part in SKILL.md, second in image"
-    class: "skillcamo.unified_scanner.generators.skill_camo:SkillCamoSplitGenerator"
+    class: "skillcamo.attacks.skill_camo:SkillCamoSplitGenerator"
     config:
       llm_provider: "openai"
       llm_model: "gpt-5-mini"

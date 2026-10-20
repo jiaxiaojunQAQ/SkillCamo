@@ -92,7 +92,7 @@ class ScanCiscoAdapter(BaseAdapter):
         try:
             # 添加 scan_cisco/ 到路径
             try:
-                from unified_scanner.paths import get_scanner_path
+                from skillcamo.framework.paths import get_scanner_path
             except ImportError:
                 from paths import get_scanner_path
             scan_cisco_path = get_scanner_path("scan_cisco")

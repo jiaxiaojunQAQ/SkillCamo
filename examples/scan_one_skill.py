@@ -14,8 +14,8 @@ import argparse
 import json
 from pathlib import Path
 
-from skillcamo.unified_scanner.config import load_unified_config_from_yaml
-from skillcamo.unified_scanner.scanner import UnifiedSkillScanner
+from skillcamo.framework.config import load_unified_config_from_yaml
+from skillcamo.framework.scanner import UnifiedSkillScanner
 
 
 def main() -> None:

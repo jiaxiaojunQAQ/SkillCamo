@@ -16,9 +16,9 @@ from .models import SkillContext, ClozeResult, SplitResult
 from ..base import strip_markdown_fences
 from ..exceptions import RetryableGenerationError
 from ..llm_compat import build_openai_chat_completion_kwargs
-from ...api_key_pool import ApiKeyPool
-from ...rate_limiter import get_shared_limiter
-from ...llm_audit import LLMAuditConfig, create_auditor_from_config
+from skillcamo.framework.api_key_pool import ApiKeyPool
+from skillcamo.framework.rate_limiter import get_shared_limiter
+from skillcamo.framework.llm_audit import LLMAuditConfig, create_auditor_from_config
 
 logger = logging.getLogger(__name__)
 _GENERATOR_FEEDBACK_SEVERITIES = {"CRITICAL", "HIGH"}

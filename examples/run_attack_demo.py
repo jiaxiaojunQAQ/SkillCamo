@@ -23,7 +23,7 @@ from __future__ import annotations
 import argparse
 from pathlib import Path
 
-from skillcamo.unified_scanner.generators.skill_camo.orchestrator import (
+from skillcamo.attacks.skill_camo.orchestrator import (
     run_injection_test,
 )
 

@@ -17,7 +17,7 @@ from pathlib import Path
 from .models import InjectionConfig
 from .orchestrator import ImageInjectionOrchestrator, run_injection_test
 from .skill_analyzer import SkillAnalyzer
-from ...utils import setup_logging as utils_setup_logging
+from skillcamo.framework.utils import setup_logging as utils_setup_logging
 
 
 def _short_error_message(error: Exception | str, max_len: int = 300) -> str:

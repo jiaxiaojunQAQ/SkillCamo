@@ -8,15 +8,15 @@ from __future__ import annotations
 
 def test_core_imports():
     import skillcamo  # noqa: F401
-    import skillcamo.unified_scanner  # noqa: F401
-    import skillcamo.unified_scanner.entry  # noqa: F401
-    import skillcamo.unified_scanner.pipeline.orchestrator  # noqa: F401
-    import skillcamo.unified_scanner.pipeline.scanner_wrapper  # noqa: F401
+    import skillcamo.framework  # noqa: F401
+    import skillcamo.framework.entry  # noqa: F401
+    import skillcamo.framework.pipeline.orchestrator  # noqa: F401
+    import skillcamo.framework.pipeline.scanner_wrapper  # noqa: F401
     import skillcamo.defenses.execscan  # noqa: F401
 
 
 def test_generator_registry_contains_exactly_paper_attacks():
-    from skillcamo.unified_scanner.generators import GeneratorRegistry
+    from skillcamo.attacks import GeneratorRegistry
 
     registered = set(GeneratorRegistry.list_all())
     assert registered == {
@@ -30,7 +30,7 @@ def test_generator_registry_contains_exactly_paper_attacks():
 
 
 def test_scanner_set_is_paper_seven():
-    from skillcamo.unified_scanner.capabilities import ALL_SCANNER_NAMES
+    from skillcamo.framework.capabilities import ALL_SCANNER_NAMES
 
     assert set(ALL_SCANNER_NAMES) == {
         "scan_cisco",
@@ -44,7 +44,7 @@ def test_scanner_set_is_paper_seven():
 
 
 def test_adapter_registry_builds():
-    from skillcamo.unified_scanner.adapters.registry import create_default_registry
+    from skillcamo.framework.adapters.registry import create_default_registry
 
     registry = create_default_registry()
     assert registry is not None

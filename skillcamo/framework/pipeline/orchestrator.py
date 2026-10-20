@@ -16,8 +16,8 @@ from .result import PipelineResult, PipelineAttempt
 from .config import AdversarialConfig
 from .scanner_wrapper import UnifiedScannerWrapper
 from .scan_utils import get_scanner_error_details, has_scanner_errors, is_detected, was_detected
-from ..generators.base import BaseGenerator
-from ..generators.exceptions import RetryableGenerationError
+from skillcamo.attacks.base import BaseGenerator
+from skillcamo.attacks.exceptions import RetryableGenerationError
 
 logger = logging.getLogger(__name__)
 
@@ -127,7 +127,7 @@ class PipelineOrchestrator:
             gen_config["base_url"] = base_url
 
         # 加载生成器
-        from ..generators import load_generator_from_config
+        from skillcamo.attacks import load_generator_from_config
         generator = load_generator_from_config(generator_name, gen_config)
 
         # 验证配置

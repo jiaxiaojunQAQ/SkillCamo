@@ -22,7 +22,7 @@ from .models import (
 from .skill_analyzer import SkillAnalyzer, load_script_command
 from .llm_advisor import LLMAdvisor
 from .image_injector import ImageInjector
-from ...pipeline.scan_utils import has_scanner_errors, is_detected, was_detected
+from skillcamo.framework.pipeline.scan_utils import has_scanner_errors, is_detected, was_detected
 
 logger = logging.getLogger(__name__)
 
@@ -47,7 +47,7 @@ class ImageInjectionOrchestrator:
         """Initialize the scanner wrapper"""
         try:
             # 导入路径更新到 pipeline 目录
-            from ...pipeline.scanner_wrapper import UnifiedScannerWrapper
+            from skillcamo.framework.pipeline.scanner_wrapper import UnifiedScannerWrapper
             return UnifiedScannerWrapper(verbose=self.config.verbose, scanner_config=self._scanner_config)
         except ImportError as e:
             logger.error(f"Failed to import scanner: {e}")

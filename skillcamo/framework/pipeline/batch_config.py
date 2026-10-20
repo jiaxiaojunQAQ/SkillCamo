@@ -377,7 +377,7 @@ class BatchConfig:
             if allowed_generators is not None:
                 supported_generators = allowed_generators
             else:
-                from ..generators import GeneratorRegistry
+                from skillcamo.attacks import GeneratorRegistry
                 supported_generators = set(GeneratorRegistry.list_all()) | {
                     "bash_script_drop", "image_drop",
                 }

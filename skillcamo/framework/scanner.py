@@ -62,7 +62,7 @@ try:
         scan_cisco,
         scan_with_adapter,
     )
-    from unified_scanner.paths import (
+    from skillcamo.framework.paths import (
         get_env_file_path,
     )
     from unified_scanner.models import ThreatCategory

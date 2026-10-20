@@ -67,7 +67,7 @@ from .pipeline import (
 )
 
 # Generators (from adversarial)
-from .generators import (
+from skillcamo.attacks import (
     BaseGenerator,
     GeneratorConfig,
     GeneratorRegistry,

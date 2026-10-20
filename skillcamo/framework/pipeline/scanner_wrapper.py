@@ -40,7 +40,7 @@ class ScannerWrapper:
     Deprecated legacy wrapper for historical scanner backends.
 
     Prefer `UnifiedScannerWrapper`, which routes through
-    `skillcamo.unified_scanner` and canonical scanner IDs.
+    `skillcamo.framework` and canonical scanner IDs.
     """
 
     def __init__(
@@ -383,7 +383,7 @@ class UnifiedScannerWrapper:
         """动态导入 unified_scanner 模块"""
         try:
             try:
-                from skillcamo.unified_scanner.scanner import UnifiedSkillScanner
+                from skillcamo.framework.scanner import UnifiedSkillScanner
             except ImportError:
                 from ..scanner import UnifiedSkillScanner
             self._unified_scanner = type(

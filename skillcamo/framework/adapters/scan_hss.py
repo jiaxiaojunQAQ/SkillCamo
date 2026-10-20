@@ -136,7 +136,7 @@ class ScanHssAdapter(BaseAdapter):
             try:
                 # 添加 scan_hss 父目录到路径（与 scanner.py 保持一致）
                 try:
-                    from unified_scanner.paths import get_scanner_path
+                    from skillcamo.framework.paths import get_scanner_path
                 except ImportError:
                     from paths import get_scanner_path
 

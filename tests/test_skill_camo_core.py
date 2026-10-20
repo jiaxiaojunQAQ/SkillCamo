@@ -8,12 +8,12 @@ from __future__ import annotations
 
 from pathlib import Path
 
-from skillcamo.unified_scanner.generators.skill_camo.cloze import (
+from skillcamo.attacks.skill_camo.cloze import (
     ClozeProcessor,
     create_cloze_processor,
 )
-from skillcamo.unified_scanner.generators.skill_camo.models import SplitConfig
-from skillcamo.unified_scanner.generators.skill_camo.split import (
+from skillcamo.attacks.skill_camo.models import SplitConfig
+from skillcamo.attacks.skill_camo.split import (
     SplitProcessor,
     create_split_processor,
 )

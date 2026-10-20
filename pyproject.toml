@@ -56,7 +56,7 @@ dev = [
 ]
 
 [project.scripts]
-skillcamo = "skillcamo.unified_scanner.cli:main"
+skillcamo = "skillcamo.framework.cli:main"
 
 [tool.setuptools.packages.find]
 include = ["skillcamo*"]

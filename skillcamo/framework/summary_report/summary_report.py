@@ -7,7 +7,7 @@ Public API for generating end-of-run summary reports.
 
 Usage::
 
-    from skillcamo.unified_scanner.summary_report import SummaryReportGenerator
+    from skillcamo.framework.summary_report import SummaryReportGenerator
 
     gen = SummaryReportGenerator(title="My Report")
     data = gen.render(result, output_path=Path("report.md"))

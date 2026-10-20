@@ -93,7 +93,7 @@ class AdversarialConfig:
             generators={
                 "SkillCamo": {
                     "name": "Skill Camo",
-                    "class": "skillcamo.unified_scanner.generators.skill_camo:SkillCamoGenerator",
+                    "class": "skillcamo.attacks.skill_camo:SkillCamoGenerator",
                 }
             },
             available_scanners=[
