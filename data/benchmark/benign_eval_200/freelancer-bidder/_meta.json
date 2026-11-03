@@ -1,0 +1,11 @@
+{
+  "owner": "27555402-spec",
+  "slug": "freelancer-bidder",
+  "displayName": "Freelancer Auto Bidder",
+  "latest": {
+    "version": "1.0.1",
+    "publishedAt": 1773072240872,
+    "commit": "https://github.com/openclaw/skills/commit/280e9adee3c7d53069468ce57e6b841344deddc2"
+  },
+  "history": []
+}

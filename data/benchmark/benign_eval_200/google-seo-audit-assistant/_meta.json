@@ -1,0 +1,11 @@
+{
+  "owner": "1gco",
+  "slug": "google-seo-audit-assistant",
+  "displayName": "Google Seo Assistant",
+  "latest": {
+    "version": "1.0.1",
+    "publishedAt": 1773650528383,
+    "commit": "https://github.com/openclaw/skills/commit/0e908163e5636e955c226550ad93afdcae6e5f07"
+  },
+  "history": []
+}

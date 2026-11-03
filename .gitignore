@@ -24,3 +24,6 @@ state.json
 # AI-assistant session logs (dev-only, never ship)
 .claude/chat/
 **/.claude/chat/
+
+# extracted dataset archive (data lives unpacked under benign_eval_200/)
+data/benchmark/*.zip

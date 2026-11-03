@@ -1,0 +1,11 @@
+{
+  "owner": "27555402-spec",
+  "slug": "cn-daily-tools",
+  "displayName": "CN Daily Tools 中文日常工具",
+  "latest": {
+    "version": "1.0.0",
+    "publishedAt": 1773072251173,
+    "commit": "https://github.com/openclaw/skills/commit/9b3f81c6344469db44777832d87eacb84dd6380b"
+  },
+  "history": []
+}
