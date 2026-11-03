@@ -75,7 +75,7 @@ Six baselines as evaluated in the paper, vendored with provenance notes
 ### Benchmark (`data/`)
 
 - `data/benchmark/benign_base_100/` — the paper's 100 clean base skills
-- `data/benchmark/benign_eval_200/` — 198-skill benign evaluation set (FPR)
+- `data/benchmark/benign_eval_200/` — 200-skill benign evaluation set (FPR)
 - `data/harmful_sh/` — payload pool the attack generators draw from
 - `results/paper/` — the paper's aggregated result CSVs
 
@@ -144,20 +144,37 @@ by editing `enabled_scanners` / the skill glob.
 
 ### Headline result
 
-ASR@5 (%) — fraction of attacks that **evade** each scanner (lower = stronger defense),
-plus FPR on the benign set. 100 base skills, `gpt-5-mini` backbone
-(full numbers in [`results/reproduction_100skill_gpt5mini.csv`](results/reproduction_100skill_gpt5mini.csv)):
+**Attack (Table 1).** ASR (%) — fraction of adversarial skills that **evade** each scanner
+(higher = weaker detection); the `None` row is the not-flagged rate on the 100 clean-base
+skills. Backbone `gpt-5-mini`, `t≤5` scanner-feedback iterations.
 
-| | SkillFortify | Cisco | HSS | Auditor | Vetter | SlowMist | **ExecScan** |
+| Method | Cisco | HSS | Auditor | SlowMist | Vetter | SkillFortify | **ExecScan** |
 |---|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| **FPR** (benign flagged) | 4 | 13 | 31 | 0 | 48 | 0 | **6** |
-| **SkillCamo** (full-image) | 100 | 100 | 79 | 100 | 97 | 100 | **7** |
-| SkillCamo-Cloze | 71 | 5 | 24 | 100 | 96 | 100 | **31** |
-| SkillCamo-Split | 93 | 7 | 13 | 100 | 97 | 100 | **19** |
-| SkillJect (text-only) | 99 | 0 | 1 | 100 | 92 | 100 | **7** |
+| None (not-flagged) | 99 | 97 | 99 | 99 | 99 | 97 | 98 |
+| **SkillCamo** (full-image) | 100 | 87 | 92 | 78 | 87 | 100 | **8** |
+| SkillCamo-Cloze | 40 | 33 | 39 | 55 | 60 | 64 | **31** |
+| SkillCamo-Split | 54 | 20 | 48 | 42 | 43 | 97 | **17** |
+| SkillJect (text-only) | 90 | 0 | 0 | 0 | 0 | 100 | **0** |
 
-The full-image **SkillCamo defeats all six baselines (79–100% ASR)** while **ExecScan holds it to
-7%** at a low 6% FPR — matching the paper's headline (ExecScan ≈8% on SkillCamo).
+Full-image **SkillCamo bypasses all six baselines at 78–100% ASR (avg 90.7%)**, while
+**ExecScan limits it to 8%** — a 70–92 point reduction.
+
+**Defense (Table 2).** On 400 adversarial + 200 benign skills, ExecScan reaches the best
+F1, Precision, and Recall; `K=5` simulated contexts, threshold `τ=0.55`.
+
+| Scanner | FPR ↓ | Precision ↑ | Recall ↑ | **F1 ↑** |
+|---|:---:|:---:|:---:|:---:|
+| Cisco | 52.0 | 52.7 | 29.0 | 37.4 |
+| HSS | 90.0 | 59.1 | 65.0 | 61.9 |
+| Auditor | 31.5 | 77.8 | 55.3 | 64.6 |
+| SlowMist | 55.5 | 67.0 | 56.3 | 61.1 |
+| Vetter | 27.5 | 79.2 | 52.5 | 63.2 |
+| SkillFortify | 56.0 | 25.8 | 9.8 | 14.2 |
+| **ExecScan** | 37.0 | **82.3** | **86.0** | **84.1** |
+
+Our independent 100-skill reproduction (ground-truth re-scoring, same backbone) is in
+[`results/reproduction_100skill_gpt5mini.csv`](results/reproduction_100skill_gpt5mini.csv)
+and matches the paper's headline (ExecScan ≈7–8% ASR on SkillCamo at low FPR).
 
 ## Repository layout
 
@@ -174,7 +191,7 @@ skillcamo/
       scan_skill_auditor/  scan_skill_vetter/  scan_skill_slowmist/
   framework/             # evaluation harness: CLI, pipeline, adapters, config
 configs/                 # paper experiment configs
-data/benchmark/          # 100 base + 198 benign-eval skills
+data/benchmark/          # 100 base + 200 benign-eval skills
 data/harmful_sh/         # payload pool for the attacks
 results/paper/           # paper's aggregated result CSVs
 examples/  tests/
